@@ -1,0 +1,11 @@
+<% if(alerts && alerts.error) { %>
+		<% alerts.error.forEach(function(msg) { %>
+				<%= msg %>
+		<% }); %>
+<% } %>
+
+<% if(alerts && alerts.success) { %>
+		<% alerts.success.forEach(function(msg) { %>
+				<%= msg %>
+		<% }); %>
+<% } %>

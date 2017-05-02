@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Brewzaar</title>
+    </head>
+    <body>
+    		<% include partials/alerts %>
+				<h1>Brewzaar</h1>
+				<h3>A market for trading beer</h3>
+				<%- body %>
+				<hr>
+				<a href="/">Home</a>
+				<a href="/profile">Profile</a>
+				<% if(!currentUser) { %>
+				<a href="/login">Log In</a>
+				<a href="/signup">Sign Up</a>
+				<% } else { %>
+				<a href="/login/logout">Logout</a>
+				<% } %>
+    </body>
+</html>
