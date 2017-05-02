@@ -17,11 +17,12 @@ router.post('/', function(req, res, next) {
     });
 
     newUser.save(function(err) {
-        if (err) return console.log(err);
+        if (err) {
+            res.redirect('login');
+            return console.log(err);
+        }
     }, function(user) {
         res.redirect('/profile');
-    }).catch(function(err) {
-        res.redirect('login');
     });
 });
 
