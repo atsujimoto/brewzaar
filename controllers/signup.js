@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        address: req.body.address,
+        address: req.body.address
     });
 
     newUser.save(function(err) {

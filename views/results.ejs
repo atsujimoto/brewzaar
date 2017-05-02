@@ -1,0 +1,22 @@
+<h1>Search Results</h1>
+
+<% if(typeof beers != 'undefined') { %>
+		<ul>
+		<% beers.data.forEach(function(beer) { %>
+				<li>
+					<a href="#"><%= beer.name %></a>
+				</li>
+		<% }); %>
+		</ul>
+<% } %>
+
+
+<% if(typeof breweries != 'undefined') { %>
+		<ul>
+		<% breweries.data.forEach(function(brewery) { %>
+				<li>
+					<a href="#"><%= brewery.name %></a>
+				</li>
+		<% }); %>
+		</ul>
+<% } %>

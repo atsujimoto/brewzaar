@@ -36,7 +36,12 @@ app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile');
 });
 
+app.get('/search', function(req, res) {
+    res.render('searchForm');
+});
+
 app.use('/login', require('./controllers/login'));
 app.use('/signup', require('./controllers/signup'));
+app.use('/results', require('./controllers/results'));
 
 app.listen(3000);
