@@ -43,5 +43,6 @@ app.get('/search', function(req, res) {
 app.use('/login', require('./controllers/login'));
 app.use('/signup', require('./controllers/signup'));
 app.use('/results', require('./controllers/results'));
+app.use('/beer', require('./controllers/beer'));
 
 app.listen(3000);

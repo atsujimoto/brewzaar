@@ -4,7 +4,7 @@
 		<ul>
 		<% beers.data.forEach(function(beer) { %>
 				<li>
-					<a href="#"><%= beer.name %></a>
+					<a href="<%= '/beer/' + beer.id %>"><%= beer.name %></a>
 				</li>
 		<% }); %>
 		</ul>
@@ -15,7 +15,7 @@
 		<ul>
 		<% breweries.data.forEach(function(brewery) { %>
 				<li>
-					<a href="#"><%= brewery.name %></a>
+					<a href="<%= '/brewery/' + brewery.id %>"><%= brewery.name %></a>
 				</li>
 		<% }); %>
 		</ul>
