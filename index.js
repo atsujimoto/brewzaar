@@ -13,7 +13,7 @@ var User = require('./models/user');
 var url = 'https://api.brewerydb.com/v2/';
 var key = process.env.BREWERY_DB_API;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/brewzaar');
+mongoose.connect(process.env.MONGOLAB_ONYX_URI || 'mongodb://localhost/brewzaar');
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
