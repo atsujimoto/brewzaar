@@ -18,11 +18,7 @@ var UserSchema = new mongoose.Schema({
     },
     firstName: { type: String },
     lastName: { type: String },
-    address: { type: String },
-    ownedBeers: [{ id: Number }],
-    wantedBeers: [{ id: Number }],
-    favBreweries: [{ id: Number }],
-    favHops: [{ id: Number }]
+    address: { type: String }
 });
 
 UserSchema.set('toJSON', {

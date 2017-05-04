@@ -1,10 +1,12 @@
 <h1>Search Results</h1>
 
 <% if(typeof beers != 'undefined') { %>
+<p>Can't find the beer you're looking for?  There's a chance it may not exist in Brewery DB's database.  Click the button below to create a new beer!</p>
+<button><a href="/beer/brewery">Create New Beer</a></button>
 		<ul>
 		<% beers.data.forEach(function(beer) { %>
 				<li>
-					<a href="<%= '/beer/' + beer.id %>"><%= beer.name %></a>
+					<a href="<%= '/beer/show/' + beer.id %>"><%= beer.name %></a>
 				</li>
 		<% }); %>
 		</ul>
@@ -15,7 +17,7 @@
 		<ul>
 		<% breweries.data.forEach(function(brewery) { %>
 				<li>
-					<a href="<%= '/brewery/' + brewery.id %>"><%= brewery.name %></a>
+					<a href="<%= '/brewery/show/' + brewery.id %>"><%= brewery.name %></a>
 				</li>
 		<% }); %>
 		</ul>
