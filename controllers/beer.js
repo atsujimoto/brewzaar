@@ -54,14 +54,9 @@ router.get('/add/owned/:id', function(req, res) {
     var id = req.params.id;
     var user = req.user.id;
     var beer = Beer.findById({ beerId: id });
-    var exists = false;
 
     request(url + 'beer/' + id + '?key=' + key, function(error, response, body) {
-        beer.ownedBy.forEach(function(owner) {
-            if (owner == user) {
 
-            }
-        });
     });
 });
 

@@ -61,4 +61,4 @@ app.use('/signup', require('./controllers/signup'));
 app.use('/results', require('./controllers/results'));
 app.use('/beer', require('./controllers/beer'));
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
