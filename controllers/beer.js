@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var Beer = require('../models/beer');
 var url = 'https://api.brewerydb.com/v2/';
 var key = process.env.BREWERY_DB_API;
 
@@ -47,6 +48,25 @@ router.post('/new', function(req, res) {
         req.flash('Success', message);
         res.redirect('/beer/show/' + id);
     });
+});
+
+router.get('/add/owned/:id', function(req, res) {
+    var id = req.params.id;
+    var user = req.user.id;
+    var beer = Beer.findById({ beerId: id });
+    var exists = false;
+
+    request(url + 'beer/' + id + '?key=' + key, function(error, response, body) {
+        beer.ownedBy.forEach(function(owner) {
+            if (owner == user) {
+
+            }
+        });
+    });
+});
+
+router.get('/add/wanted/:id', function(req, res) {
+    var id = req.params.id;
 });
 
 module.exports = router;

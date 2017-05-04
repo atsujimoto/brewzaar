@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
-var UserSchema = new mongoose.Schema({
+var UserSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -18,7 +19,9 @@ var UserSchema = new mongoose.Schema({
     },
     firstName: { type: String },
     lastName: { type: String },
-    address: { type: String }
+    address: { type: String },
+    ownedBeer: [{ type: Schema.Types.ObjectId, ref: 'Beer' }],
+    wantedBeer: [{ type: Schema.Types.ObjectId, ref: 'Beer' }]
 });
 
 UserSchema.set('toJSON', {
