@@ -1,3 +1,17 @@
 <h1><%= user.username %></h1>
 <h3>Beers you have and want to trade:</h3>
-
+<% user.ownedBeer.forEach(function(beer) { %>
+			<div>
+				<h4><%= beer.beerName %></h4>
+				<p><%= beer.breweryName %></p>
+				<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+			</div>
+<%}); %>
+<h3>Beers you would like to trade for:</h3>
+<% user.wantedBeer.forEach(function(beer) { %>
+			<div>
+				<h4><%= beer.beerName %></h4>
+				<p><%= beer.breweryName %></p>
+				<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+			</div>
+<%}); %>

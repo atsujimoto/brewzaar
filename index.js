@@ -13,6 +13,8 @@ var User = require('./models/user');
 var url = 'https://api.brewerydb.com/v2/';
 var key = process.env.BREWERY_DB_API;
 
+var sess;
+
 mongoose.connect(process.env.MONGOLAB_ONYX_URI || 'mongodb://localhost/brewzaar');
 
 app.set('view engine', 'ejs');
@@ -40,9 +42,12 @@ app.get('/', function(req, res) {
 app.get('/profile', isLoggedIn, function(req, res) {
     var id = req.user.id;
 
-    User.findById(id, function(error, user) {
-        res.render('profile', { user: user });
-    });
+    User.findOne({ _id: id })
+        .populate('ownedBeer')
+        .populate('wantedBeer')
+        .exec(function(err, user) {
+            res.render('profile', { user: user });
+        });
 });
 
 app.get('/search', function(req, res) {

@@ -1,6 +1,7 @@
 <hr>
 <button><a href="/beer/add/owned/<%= beer.data.id %>">Add to Owned Beers</a></button>
-<button><a href="/beer/add/wanted<%= beer.data.id %>">Add to Wanted Beers</a></button>
+<button><a href="/beer/add/wanted/<%= beer.data.id %>">Add to Wanted Beers</a></button>
+<button><a href="/beer/add/list/<%= beer.data.id %>">Users That Own/Want This Beer</a></button>
 <hr>
 <h1><%= beer.data.name %></h1>
 <h3><%= beer.data.description %></h3>

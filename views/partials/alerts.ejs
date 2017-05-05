@@ -1,11 +1,11 @@
 <% if(alerts && alerts.error) { %>
 		<% alerts.error.forEach(function(msg) { %>
-				<%= msg %>
+				<p><%= msg %></p>
 		<% }); %>
 <% } %>
 
 <% if(alerts && alerts.success) { %>
 		<% alerts.success.forEach(function(msg) { %>
-				<%= msg %>
+				<p><%= msg %></p>
 		<% }); %>
 <% } %>

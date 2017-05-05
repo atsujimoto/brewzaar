@@ -62,20 +62,32 @@ router.get('/add/owned/:id', isLoggedIn, function(req, res) {
         searchedBeer = beer[0];
 
         if (searchedBeer !== undefined) {
-            if (searchedBeer.ownedBy.length > 0) {
-                searchedBeer.ownedBy.forEach(function(owner) {
-                    if (owner == userId) {
-                        req.flash('Error', 'You have already added this beer');
-                        res.redirect('/profile');
-                    }
-                });
-                User.findByIdAndUpdate(userId, { $push: { ownedBeer: searchedBeer } }, { safe: true, upsert: true }, function(err, model) {
-                    console.log(err);
-                });
+            var match = false;
+
+            searchedBeer.ownedBy.forEach(function(owner) {
+                if (owner === userId) {
+                    match = true;
+                    return match;
+                }
+            });
+
+            if (match) {
+                req.flash('Error', 'You have already added this beer');
+                console.log(req.session);
+                res.redirect('/profile');
             } else {
                 User.findByIdAndUpdate(userId, { $push: { ownedBeer: searchedBeer } }, { safe: true, upsert: true }, function(err, model) {
-                    console.log(err);
+                    if (err) {
+                        console.log(err);
+                    }
                 });
+                Beer.findByIdAndUpdate(beer, { $push: { ownedBy: userId } }, { safe: true, upsert: true }, function(err, model) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                req.flash('Success', 'Beer added');
+                res.redirect('/profile');
             }
         } else {
             request(url + 'beer/' + id + '?withBreweries=y' + '&key=' + key, function(error, response, body) {
@@ -99,12 +111,14 @@ router.get('/add/owned/:id', isLoggedIn, function(req, res) {
                 newBeer.save(function(err) {
                     if (err) {
                         res.redirect('/profile');
-                        return console.log(err);
+                        console.log(err);
                     }
                     res.redirect('/profile');
                 });
                 User.findByIdAndUpdate(userId, { $push: { ownedBeer: newBeer } }, { safe: true, upsert: true }, function(err, model) {
-                    console.log(err);
+                    if (err) {
+                        console.log(err);
+                    }
                 });
             });
         }
@@ -113,6 +127,74 @@ router.get('/add/owned/:id', isLoggedIn, function(req, res) {
 
 router.get('/add/wanted/:id', function(req, res) {
     var id = req.params.id;
+    var searchedBeer;
+    var userId = req.user.id;
+
+    Beer.find({ beerId: id }, function(error, beer) {
+        searchedBeer = beer[0];
+
+        if (searchedBeer !== undefined) {
+            var match = false;
+
+            searchedBeer.wantedBy.forEach(function(owner) {
+                if (owner === userId) {
+                    match = true;
+                    return match;
+                }
+            });
+
+            if (match) {
+                req.flash('Error', 'You have already added this beer');
+                console.log(req.session);
+                res.redirect('/profile');
+            } else {
+                User.findByIdAndUpdate(userId, { $push: { wantedBeer: searchedBeer } }, { safe: true, upsert: true }, function(err, model) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                Beer.findByIdAndUpdate(beer, { $push: { wantedBy: userId } }, { safe: true, upsert: true }, function(err, model) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                req.flash('Success', 'Beer added');
+                res.redirect('/profile');
+            }
+        } else {
+            request(url + 'beer/' + id + '?withBreweries=y' + '&key=' + key, function(error, response, body) {
+                var createdBeer = JSON.parse(body);
+                var icon;
+
+                if (typeof createdBeer.data.labels != 'undefined') {
+                    icon = createdBeer.data.labels.icon;
+                }
+
+                var newBeer = new Beer({
+                    beerId: createdBeer.data.id,
+                    beerName: createdBeer.data.name,
+                    breweryId: createdBeer.data.breweries[0].id,
+                    breweryName: createdBeer.data.breweries[0].name,
+                    icon: icon,
+                    ownedBy: [],
+                    wantedBy: [userId]
+                });
+
+                newBeer.save(function(err) {
+                    if (err) {
+                        res.redirect('/profile');
+                        console.log(err);
+                    }
+                    res.redirect('/profile');
+                });
+                User.findByIdAndUpdate(userId, { $push: { wantedBeer: newBeer } }, { safe: true, upsert: true }, function(err, model) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            });
+        }
+    });
 });
 
 module.exports = router;
