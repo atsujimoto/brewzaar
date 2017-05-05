@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('../config/passportConfig');
 var User = require('../models/user');
 
 router.get('/', function(req, res) {
@@ -21,8 +22,12 @@ router.post('/', function(req, res, next) {
             res.redirect('login');
             return console.log(err);
         }
-    }, function(user) {
-        res.redirect('/profile');
+        passport.authenticate('local', {
+            successRedirect: '/profile',
+            successFlash: 'Login successful',
+            failureRedirect: '/login',
+            failureFlash: 'Failed login. Try again'
+        })(req, res, next);
     });
 });
 
