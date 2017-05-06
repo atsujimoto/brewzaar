@@ -3,3 +3,11 @@
 <h3><%= brewery.data.description %></h3>
 <a href="<%= brewery.data.website %>"><%= brewery.data.website %></a>
 <img src="<%= brewery.data.images.large%>" alt="<%= brewery.data.name + 'logo'%>">
+
+<h3>List of Beers made by this Brewery:</h3>
+
+<ul>
+	<% beers.data.forEach(function(beer) { %>
+			<li><a href="<%= '/beer/show/' + beer.id %>"><%= beer.name %></a></li>
+	<% }); %>
+</ul>

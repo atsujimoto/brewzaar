@@ -57,8 +57,10 @@ app.get('/search', function(req, res) {
 app.get('/brewery/show/:id', function(req, res) {
     var id = req.params.id;
 
-    request(url + 'brewery/' + id + '?key=' + key, function(error, response, body) {
-        res.render('breweryShow', { brewery: JSON.parse(body) });
+    request(url + 'brewery/' + id + '?key=' + key, function(error, response, brewery) {
+        request(url + 'brewery/' + id + '/beers' + '?key=' + key, function(error, response, beers) {
+            res.render('breweryShow', { brewery: JSON.parse(brewery), beers: JSON.parse(beers) });
+        });
     });
 });
 

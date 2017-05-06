@@ -36,16 +36,18 @@ router.post('/new', function(req, res) {
     request.post({
         url: url + 'beers?key=' + key,
         form: {
-            name: req.query.name,
-            styleId: req.query.style,
-            description: req.query.description,
-            abv: req.query.abv,
-            ibu: req.query.ibu,
-            brewery: req.query.brewery
+            name: req.body.name,
+            styleId: req.body.style,
+            description: req.body.description,
+            abv: req.body.abv,
+            ibu: req.body.ibu,
+            brewery: req.body.brewery
         }
     }, function(error, httpResponse, body) {
-        var message = JSON.parse(body).message;
-        var id = JSON.parse(body).data.id;
+        var apiResponse = JSON.parse(body);
+        console.log(apiResponse);
+        var message = apiResponse.message;
+        var id = apiResponse.data.id;
 
         req.flash('Success', message);
         res.redirect('/beer/show/' + id);
@@ -196,5 +198,22 @@ router.get('/add/wanted/:id', function(req, res) {
         }
     });
 });
+
+router.get('/users/wanted/:id', function(req, res) {
+    var id = req.params.id;
+
+    User.find({ wantedBeer: id }, function(err, users) {
+        res.render('beer/wantedUsers', { users: users });
+    });
+});
+
+router.get('/users/owned/:id', function(req, res) {
+    var id = req.params.id;
+
+    User.find({ ownedBeer: id }, function(err, users) {
+        res.render('beer/ownedUsers', { users: users });
+    });
+});
+
 
 module.exports = router;

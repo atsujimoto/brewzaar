@@ -1,0 +1,7 @@
+<h1>List of Users that are Willing to Trade for this Beer:</h1>
+
+<ul>
+	<% users.forEach(function(user) { %>
+			<li><%= user.username %> - <%= user.email %></li>
+	<% }); %>
+</ul>
