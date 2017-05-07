@@ -1,13 +1,13 @@
 <hr>
-<h1><%= brewery.data.name %></h1>
-<h3><%= brewery.data.description %></h3>
+<h3><%= brewery.data.name %></h3>
+<p><%= brewery.data.description %></p>
 <a href="<%= brewery.data.website %>"><%= brewery.data.website %></a>
 <img src="<%= brewery.data.images.large%>" alt="<%= brewery.data.name + 'logo'%>">
 
-<h3>List of Beers made by this Brewery:</h3>
+<h5>List of Beers made by this Brewery:</h5>
 
-<ul>
+<ul class="collection">
 	<% beers.data.forEach(function(beer) { %>
-			<li><a href="<%= '/beer/show/' + beer.id %>"><%= beer.name %></a></li>
+			<li><a href="<%= '/beer/show/' + beer.id %>" class="collection-item"><%= beer.name %></a></li>
 	<% }); %>
 </ul>

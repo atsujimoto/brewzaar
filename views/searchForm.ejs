@@ -1,15 +1,27 @@
-<h1>Seach for your favorite beer or brewery</h1>
+<h4>Seach for your favorite beer or brewery</h4>
 
-<form action="/results/beers" method="GET">
-		<label for="beer">Beer Name</label>
-		<input type="text" name="beer" placeholder="Name of a beer">
+<div class="row">
+		<form action="/results/beers" method="GET" class="col s12 m6">
+				<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="beer">
+							<label for="beer">Beer Name</label>
+						</div>
+				</div>
 
-		<input type="submit" value="Search Beers">
-</form>
+				<input type="submit" value="Search Beers" class="btn">
+		</form>
+</div>
 
-<form action="/results/breweries" method="GET">
-		<label for="brewery">Brewery Name</label>
-		<input type="text" name="brewery" placeholder="Name of a brewery">
+<div class="row">
+		<form action="/results/breweries" method="GET" class="col s12 m6">
+				<div class="row">
+						<div class="input-field col s12">
+								<input type="text" name="brewery">
+								<label for="brewery">Brewery Name</label>
+						</div>
+				</div>
 
-		<input type="submit" value="Search Breweries">
-</form>
+				<input type="submit" value="Search Breweries" class="btn">
+		</form>
+</div>

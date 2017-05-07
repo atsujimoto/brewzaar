@@ -1,17 +1,31 @@
-<h1><%= user.username %></h1>
-<h3>Beers you have and want to trade:</h3>
-<% user.ownedBeer.forEach(function(beer) { %>
-			<div>
-				<h4><a href="/beer/users/wanted/<%= beer._id %>"><%= beer.beerName %></a></h4>
-				<p><%= beer.breweryName %></p>
-				<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
-			</div>
-<%}); %>
-<h3>Beers you would like to trade for:</h3>
-<% user.wantedBeer.forEach(function(beer) { %>
-			<div>
-				<h4><a href="/beer/users/owned/<%= beer._id %>"><%= beer.beerName %></a></h4>
-				<p><%= beer.breweryName %></p>
-				<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
-			</div>
-<%}); %>
+<h4>Welcome back, <%= user.username %></h4>
+<nav>
+  	<div class="nav-wrapper">
+  			<span class="brand-logo right">Beers</span>
+    		<ul class="left hide-on-med-and-down">
+      			<li id="owned-btn"><a href="#">Owned</a></li>
+      			<li id="wanted-btn"><a href="#">Wanted</a></li>
+   			</ul>
+  	</div>
+</nav>
+
+<div id="owned" class="flex space-around">
+		<% user.ownedBeer.forEach(function(beer) { %>
+				<div class="box">
+						<h5><a href="/beer/users/wanted/<%= beer._id %>"><%= beer.beerName %></a></h5>
+						<p><%= beer.breweryName %></p>
+						<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+				</div>
+		<%}); %>
+</div>
+
+
+<div id="wanted" class="flex space-around hide">
+		<% user.wantedBeer.forEach(function(beer) { %>
+				<div class="box">
+						<h5><a href="/beer/users/owned/<%= beer._id %>"><%= beer.beerName %></a></h5>
+						<p><%= beer.breweryName %></p>
+						<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+				</div>
+		<%}); %>
+</div>

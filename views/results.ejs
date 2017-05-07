@@ -1,12 +1,12 @@
-<h1>Search Results</h1>
+<h4>Search Results</h4>
 
 <% if(typeof beers != 'undefined') { %>
 <p>Can't find the beer you're looking for?  There's a chance it may not exist in Brewery DB's database.  Click the button below to create a new beer!</p>
 <button><a href="/beer/brewery">Create New Beer</a></button>
-		<ul>
+		<ul class="collection">
 		<% beers.data.forEach(function(beer) { %>
 				<li>
-					<a href="<%= '/beer/show/' + beer.id %>"><%= beer.name %></a>
+					<a href="<%= '/beer/show/' + beer.id %>" class="collection-item"><%= beer.name %></a>
 				</li>
 		<% }); %>
 		</ul>
@@ -14,10 +14,10 @@
 
 
 <% if(typeof breweries != 'undefined') { %>
-		<ul>
+		<ul class="collection">
 		<% breweries.data.forEach(function(brewery) { %>
 				<li>
-					<a href="<%= '/brewery/show/' + brewery.id %>"><%= brewery.name %></a>
+					<a href="<%= '/brewery/show/' + brewery.id %>" class="collection-item"><%= brewery.name %></a>
 				</li>
 		<% }); %>
 		</ul>

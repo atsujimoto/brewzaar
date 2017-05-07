@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 var passport = require('../config/passportConfig');
 var User = require('../models/user');
+
+router.use(express.static(path.join(__dirname, '../public')));
 
 router.get('/', function(req, res) {
     res.render('signupForm');

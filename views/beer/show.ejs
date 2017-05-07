@@ -1,9 +1,9 @@
 <hr>
-<button><a href="/beer/add/owned/<%= beer.data.id %>">Add to Owned Beers</a></button>
-<button><a href="/beer/add/wanted/<%= beer.data.id %>">Add to Wanted Beers</a></button>
+<a href="/beer/add/owned/<%= beer.data.id %>" class="btn">Add to Owned Beers</a>
+<a href="/beer/add/wanted/<%= beer.data.id %>" class="btn">Add to Wanted Beers</a>
 <hr>
-<h1><%= beer.data.name %></h1>
-<h3><%= beer.data.description %></h3>
+<h3><%= beer.data.name %></h3>
+<p><%= beer.data.description %></p>
 <p>Style: <%= beer.data.style.shortName %></p>
 <p>ABV: <%= beer.data.abv %>%</p>
 <p>IBU: <%= beer.data.ibu %></p>

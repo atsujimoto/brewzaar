@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
 var session = require('express-session');
 var flash = require('connect-flash');
+var path = require('path');
+var async = require('async');
 var passport = require('./config/passportConfig');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var app = express();
@@ -13,10 +15,10 @@ var User = require('./models/user');
 var url = 'https://api.brewerydb.com/v2/';
 var key = process.env.BREWERY_DB_API;
 
-var sess;
 
 mongoose.connect(process.env.MONGOLAB_ONYX_URI || 'mongodb://localhost/brewzaar');
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,11 +58,18 @@ app.get('/search', function(req, res) {
 
 app.get('/brewery/show/:id', function(req, res) {
     var id = req.params.id;
+    var requests = [{
+        url: url + 'brewery/' + id + '?key=' + key
+    }, {
+        url: url + 'brewery/' + id + '/beers' + '?key=' + key
+    }];
 
-    request(url + 'brewery/' + id + '?key=' + key, function(error, response, brewery) {
-        request(url + 'brewery/' + id + '/beers' + '?key=' + key, function(error, response, beers) {
-            res.render('breweryShow', { brewery: JSON.parse(brewery), beers: JSON.parse(beers) });
+    async.map(requests, function(obj, cb) {
+        request(obj, function(error, response, body) {
+            cb(null, JSON.parse(body));
         });
+    }, function(err, results) {
+        res.render('breweryShow', { brewery: results[0], beers: results[1] });
     });
 });
 

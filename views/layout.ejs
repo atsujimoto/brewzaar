@@ -2,21 +2,38 @@
 <html>
     <head>
         <title>Brewzaar</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+				<link rel="stylesheet" href="css/style.css">
+
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+				<script src="js/main.js"></script>
     </head>
     <body>
-    		<% include partials/alerts %>
-				<h1>Brewzaar</h1>
-				<h3>A market for trading beer</h3>
-				<%- body %>
-				<hr>
-				<a href="/">Home</a>
-				<a href="/profile">Profile</a>
-				<% if(!currentUser) { %>
-				<a href="/login">Log In</a>
-				<a href="/signup">Sign Up</a>
-				<% } else { %>
-				<a href="/search">Search</a>
-				<a href="/login/logout">Logout</a>
-				<% } %>
+    		<div class="navbar-fixed">
+						<nav>
+								<div class="nav-wrapper">
+										<a href="/" class="brand-logo">Home</a>
+										<ul class="right hide-on-med-and-down">
+											<% if(!currentUser) { %>
+														<li><a href="/login">Log In</a></li>
+														<li><a href="/signup">Sign Up</a></li>
+												<% } else { %>
+														<li><a href="/profile">Profile</a></li>
+														<li><a href="/search">Search</a></li>
+														<li><a href="/login/logout">Logout</a></li>
+												<% } %>
+										</ul>
+								</div>
+						</nav>
+				</div>
+				<div class="header">
+					<h1>Brewzaar</h1>
+					<span>An online market for trading beer</span>
+				</div>
+    		<div class="container">
+						<% include partials/alerts %>
+						<%- body %>
+				</div>
     </body>
 </html>

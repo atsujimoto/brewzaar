@@ -1,13 +1,21 @@
-<h1>Welcome Back</h1>
+<div class="row">
+		<form action="/login" method="POST" class="col s12 m6">
+				<legend>Login</legend>
 
-<form action="/login" method="POST">
-	<legend>Login</legend>
+				<div class="row">
+						<div class="input-field col s12">
+								<input type="text" name="username">
+								<label for="username">Username</label>
+						</div>
+				</div>
 
-		<label for="username">Username</label>
-		<input type="text" name="username" placeholder="Your username">
+				<div class="row">
+						<div class="input-field col s12">
+								<input type="password" name="password">
+								<label for="password">Password</label>
+						</div>
+				</div>
 
-		<label for="password">Password</label>
-		<input type="password" name="password" placeholder="Your password">
-
-		<input type="submit" value="Login">
-</form>
+				<input type="submit" value="Login" class="btn">
+		</form>
+</div>

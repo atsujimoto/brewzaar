@@ -1,0 +1,20 @@
+.flex {
+    display: flex;
+}
+
+.space-around {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box {
+    width: 32%;
+    border: solid black 2px;
+    margin: 5px 2.5px;
+}
+
+.header {
+    width: 90%;
+    margin: 0 auto;
+}

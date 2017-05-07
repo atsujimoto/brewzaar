@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var path = require('path');
 var isLoggedIn = require('../middleware/isLoggedIn');
 var Beer = require('../models/beer');
 var User = require('../models/user');
 var url = 'https://api.brewerydb.com/v2/';
 var key = process.env.BREWERY_DB_API;
+
+router.use(express.static(path.join(__dirname, '../public')));
 
 router.get('/show/:id', function(req, res) {
     var id = req.params.id;
@@ -94,10 +97,10 @@ router.get('/add/owned/:id', isLoggedIn, function(req, res) {
         } else {
             request(url + 'beer/' + id + '?withBreweries=y' + '&key=' + key, function(error, response, body) {
                 var createdBeer = JSON.parse(body);
-                var icon;
+                var picture;
 
                 if (typeof createdBeer.data.labels != 'undefined') {
-                    icon = createdBeer.data.labels.icon;
+                    picture = createdBeer.data.labels.medium;
                 }
 
                 var newBeer = new Beer({
@@ -105,7 +108,7 @@ router.get('/add/owned/:id', isLoggedIn, function(req, res) {
                     beerName: createdBeer.data.name,
                     breweryId: createdBeer.data.breweries[0].id,
                     breweryName: createdBeer.data.breweries[0].name,
-                    icon: icon,
+                    icon: picture,
                     ownedBy: [userId],
                     wantedBy: []
                 });
@@ -166,10 +169,10 @@ router.get('/add/wanted/:id', function(req, res) {
         } else {
             request(url + 'beer/' + id + '?withBreweries=y' + '&key=' + key, function(error, response, body) {
                 var createdBeer = JSON.parse(body);
-                var icon;
+                var picture;
 
                 if (typeof createdBeer.data.labels != 'undefined') {
-                    icon = createdBeer.data.labels.icon;
+                    picture = createdBeer.data.labels.medium;
                 }
 
                 var newBeer = new Beer({
@@ -177,7 +180,7 @@ router.get('/add/wanted/:id', function(req, res) {
                     beerName: createdBeer.data.name,
                     breweryId: createdBeer.data.breweries[0].id,
                     breweryName: createdBeer.data.breweries[0].name,
-                    icon: icon,
+                    icon: picture,
                     ownedBy: [],
                     wantedBy: [userId]
                 });
