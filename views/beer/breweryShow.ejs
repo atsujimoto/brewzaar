@@ -1,9 +1,9 @@
-<h1>Select which brewery you want to add a beer for</h1>
+<h4>Select which brewery you want to add a beer for</h4>
 
-<ul>
+<ul class="collection">
 		<% breweries.data.forEach(function(brewery) { %>
 				<li>
-					<a href="<%= '/beer/new/' + brewery.id %>"><%= brewery.name %></a>
+					<a href="<%= '/beer/new/' + brewery.id %>" class="collection-item"><%= brewery.name %></a>
 				</li>
 		<% }); %>
 </ul>

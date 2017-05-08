@@ -1,10 +1,10 @@
 <h4>Welcome back, <%= user.username %></h4>
 <nav>
-  	<div class="nav-wrapper">
+  	<div class="nav-wrapper amber darken-2">
   			<span class="brand-logo right">Beers</span>
-    		<ul class="left hide-on-med-and-down">
-      			<li id="owned-btn"><a href="#">Owned</a></li>
-      			<li id="wanted-btn"><a href="#">Wanted</a></li>
+    		<ul class="left">
+      			<li id="owned-btn" class="active"><a href="#container">Owned</a></li>
+      			<li id="wanted-btn"><a href="#container">Wanted</a></li>
    			</ul>
   	</div>
 </nav>
@@ -14,7 +14,9 @@
 				<div class="box">
 						<h5><a href="/beer/users/wanted/<%= beer._id %>"><%= beer.beerName %></a></h5>
 						<p><%= beer.breweryName %></p>
-						<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+						<div class="center-align">
+								<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+						</div>
 				</div>
 		<%}); %>
 </div>
@@ -25,7 +27,9 @@
 				<div class="box">
 						<h5><a href="/beer/users/owned/<%= beer._id %>"><%= beer.beerName %></a></h5>
 						<p><%= beer.breweryName %></p>
-						<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+						<div class="center-align">
+								<img src="<%= beer.icon %>" alt="<%= beer.beerName %> icon">
+						</div>
 				</div>
 		<%}); %>
 </div>

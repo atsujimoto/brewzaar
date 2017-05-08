@@ -1,9 +1,15 @@
-<h1>Add a new beer</h1>
-
+<h4>Add a new beer</h4>
 <p>First, which brewery makes the beer you'd like to add?</p>
-<form action="/beer/brewery/show" method="GET">
-		<label for="brewery">Brewery Name</label>
-		<input type="text" name="brewery" placeholder="Name of a brewery">
 
-		<input type="submit" value="Search Breweries">
-</form>
+<div class="row">
+		<form action="/beer/brewery/show" method="GET" class="col s12 m6">
+				<div class="row">
+						<div class="input-field col s12">
+								<label for="brewery">Brewery Name</label>
+								<input type="text" name="brewery">
+						</div>
+				</div>
+
+				<input type="submit" value="Search Breweries" class="btn">
+		</form>
+</div>

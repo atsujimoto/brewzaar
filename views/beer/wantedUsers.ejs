@@ -1,7 +1,7 @@
-<h1>List of Users that are Willing to Trade for this Beer:</h1>
+<h4>List of Users Willing to Trade for This Beer:</h4>
 
-<ul>
+<ul class="collection">
 	<% users.forEach(function(user) { %>
-			<li><%= user.username %> - <%= user.email %></li>
+			<li class="collection-item"><%= user.username %><span class="badge"><%= user.email %></span></li>
 	<% }); %>
 </ul>

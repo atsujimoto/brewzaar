@@ -1,27 +1,46 @@
-<h1>Add a new beer</h1>
+<h4>Add a new beer</h4>
 
-<form action="/beer/new" method="POST">
-		<label for="name">Name of Beer</label>
-		<input type="text" name="name" placeholder="Beer name">
+<div class="row">
+		<form action="/beer/new" method="POST" class="col s12">
+				<div class="row">
+						<div class="input-field col s6">
+								<label for="name">Name of Beer</label>
+								<input type="text" name="name">
+						</div>
 
-		<label for="style">Select a Style</label>
-		<select name="style">
-				<% styles.data.forEach(function(style) { %>
-						<option value="<%= style.id %>"><%= style.shortName %></option>
-				<% }); %>
-		</select>
+						<div class="input-field col s6">
+								<select>
+										<option value="" disabled selected>Select a Style</option>
+										<% styles.data.forEach(function(style) { %>
+												<option value="<%= style.id %>"><%= style.shortName %></option>
+										<% }); %>
+								</select>
+						</div>
+				</div>
 
-		<label for="description">Description</label>
-		<textarea name="description" cols="30" rows="10" placeholder="Beer description"></textarea>
+				<div class="row">
+						<div class="input-field col s12">
+								<textarea name="description" class="materialize-textarea" placeholder="Beer description"></textarea>
+								<label for="description">Description</label>
+						</div>
+				</div>
 
-		<label for="abv">ABV</label>
-		<input type="text" name="abv" placeholder="0.0">
+				<div class="row">
+						<div class="input-field col s4">
+								<label for="abv">ABV</label>
+								<input type="text" name="abv" placeholder="0.0">
+						</div>
 
-		<label for="ibu">IBU</label>
-		<input type="number" name="ibu"	placeholder="0">
+						<div class="input-field col s4">
+								<label for="ibu">IBU</label>
+								<input type="number" name="ibu"	placeholder="0">
+						</div>
 
-		<label for="brewery">Brewery</label>
-		<input type="text" name="brewery" value="<%= breweryId %>">
-
-		<input type="submit" value="Create Beer">
-</form>
+						<div class="input-field col s4">
+								<label for="brewery">Brewery</label>
+								<input type="text" name="brewery" disabled value="<%= breweryId %>">
+						</div>
+				</div>
+				<input type="submit" value="Create Beer" class="btn">
+		</form>
+</div>

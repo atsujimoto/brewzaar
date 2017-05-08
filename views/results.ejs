@@ -1,24 +1,34 @@
 <h4>Search Results</h4>
 
 <% if(typeof beers != 'undefined') { %>
-<p>Can't find the beer you're looking for?  There's a chance it may not exist in Brewery DB's database.  Click the button below to create a new beer!</p>
-<button><a href="/beer/brewery">Create New Beer</a></button>
-		<ul class="collection">
-		<% beers.data.forEach(function(beer) { %>
-				<li>
-					<a href="<%= '/beer/show/' + beer.id %>" class="collection-item"><%= beer.name %></a>
-				</li>
-		<% }); %>
-		</ul>
+		<% if (typeof beers.data != 'undefined') { %>
+				<p>Can't find the beer you're looking for?  There's a chance it may not exist in Brewery DB's database.  Click the button below to create a new beer!</p>
+				<a href="/beer/brewery" class="btn">Create New Beer</a>
+				<ul class="collection">
+				<% beers.data.forEach(function(beer) { %>
+						<li>
+							<a href="<%= '/beer/show/' + beer.id %>" class="collection-item"><%= beer.name %></a>
+						</li>
+				<% }); %>
+				</ul>
+		<% } else { %>
+				<p>Search returned no results.  Unfotunately, our search does not compensate for spelling errors.  Try your search again, but type the name carefully.  You can also try searching for the brewery instead to get a list of all their beers.</p>
+				<p>Can't find the beer you're looking for?  There's a chance it may not exist in Brewery DB's database.  Click the button below to create a new beer!</p>
+				<a href="/beer/brewery" class="btn">Create New Beer</a>
+		<% } %>
 <% } %>
 
 
 <% if(typeof breweries != 'undefined') { %>
-		<ul class="collection">
-		<% breweries.data.forEach(function(brewery) { %>
-				<li>
-					<a href="<%= '/brewery/show/' + brewery.id %>" class="collection-item"><%= brewery.name %></a>
-				</li>
-		<% }); %>
-		</ul>
+		<% if(typeof breweries.data != 'undefined') { %>
+				<ul class="collection">
+				<% breweries.data.forEach(function(brewery) { %>
+						<li>
+							<a href="<%= '/brewery/show/' + brewery.id %>" class="collection-item"><%= brewery.name %></a>
+						</li>
+				<% }); %>
+				</ul>
+		<% } else { %>
+				<p>Search returned no results.  Unfotunately, our search does not compensate for spelling errors.  Try your search again, but type the name carefully.</p>
+		<% } %>
 <% } %>

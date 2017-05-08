@@ -38,6 +38,10 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
+    res.redirect('/home');
+});
+
+app.get('/home', function(req, res) {
     res.render('index');
 });
 

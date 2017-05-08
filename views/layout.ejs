@@ -2,19 +2,20 @@
 <html>
     <head>
         <title>Brewzaar</title>
+				<link href="https://fonts.googleapis.com/css?family=Abel|Bowlby+One+SC" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-				<link rel="stylesheet" href="css/style.css">
+				<link rel="stylesheet" href="/css/style.css">
 
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-				<script src="js/main.js"></script>
+				<script src="/js/main.js"></script>
     </head>
-    <body>
+    <body class="amber lighten-4">
     		<div class="navbar-fixed">
 						<nav>
-								<div class="nav-wrapper">
-										<a href="/" class="brand-logo">Home</a>
-										<ul class="right hide-on-med-and-down">
+								<div class="nav-wrapper amber">
+										<a href="/" id="home-btn" class="left brand-logo">Home</a>
+										<ul id="nav-links" class="right">
 											<% if(!currentUser) { %>
 														<li><a href="/login">Log In</a></li>
 														<li><a href="/signup">Sign Up</a></li>
@@ -27,11 +28,11 @@
 								</div>
 						</nav>
 				</div>
-				<div class="header">
+				<div class="header grey lighten-5">
 					<h1>Brewzaar</h1>
-					<span>An online market for trading beer</span>
+					<h5>Turn the beer you have into the beer you want</h5>
 				</div>
-    		<div class="container">
+				<div id="container" class="container grey lighten-5">
 						<% include partials/alerts %>
 						<%- body %>
 				</div>
