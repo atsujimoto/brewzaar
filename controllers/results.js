@@ -3,7 +3,7 @@ var router = express.Router();
 var request = require('request');
 var path = require('path');
 var url = 'https://api.brewerydb.com/v2/search?q=';
-var key = process.env.BREWERY_DB_API;
+var key = 'b668f02678382522be60a2976812dc06';
 
 router.use(express.static(path.join(__dirname, '../public')));
 
