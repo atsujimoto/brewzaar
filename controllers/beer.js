@@ -6,7 +6,7 @@ var isLoggedIn = require('../middleware/isLoggedIn');
 var Beer = require('../models/beer');
 var User = require('../models/user');
 var url = 'https://api.brewerydb.com/v2/';
-var key = 'b668f02678382522be60a2976812dc06';
+var key = process.env.BREWERY_DB_API;
 
 router.use(express.static(path.join(__dirname, '../public')));
 
